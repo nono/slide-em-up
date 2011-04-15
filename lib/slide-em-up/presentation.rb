@@ -15,6 +15,7 @@ module SlideEmUp
     def path_for_asset(asset)
       try = "#{@views_dir}#{asset}"
       return try if File.exists? try
+      Dir["#{@dir}/**/#{asset}"].first
     end
 
     def html

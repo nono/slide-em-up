@@ -9,7 +9,7 @@
 
 @font-face {
 	font-family: 'League Gothic';
-	src: url('../assets/fonts/leaguegothic/league_gothic-webfont.ttf') format('truetype');
+	src: url('/fonts/league_gothic-webfont.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -82,12 +82,12 @@ h4.inverted {
  *********************************************/
 #main {
 	position: absolute;
-	width: 800px;
-	height: 600px;
+	width: 1024px;
+	height: 768px;
 	
 	left: 50%;
 	top: 50%;
-	margin-left: -400px;
+	margin-left: -512px;
 	margin-top: -320px;
 	
 	text-align: center;
@@ -207,12 +207,3 @@ img {
 		   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 		        box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 	}
-
-
-
-
-
-
-
-
-

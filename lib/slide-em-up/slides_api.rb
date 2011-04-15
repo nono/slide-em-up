@@ -1,3 +1,4 @@
+require "rack/utils"
 require "goliath/api"
 
 
@@ -10,7 +11,11 @@ module SlideEmUp
     end
 
     def response(env)
-      [200, { "content-type" => "text/html; charset=utf-8" },  @presentation.html]
+      body = @presentation.html
+      [200, {
+        "Content-Type"   => "text/html; charset=utf-8",
+        "Content-Length" => Rack::Utils.bytesize(body).to_s
+      }, [body] ]
     end
   end
 end
