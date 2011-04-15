@@ -1,3 +1,4 @@
+require "albino"
 require "nolate"
 require "redcarpet"
 require "yajl"
@@ -75,12 +76,35 @@ module SlideEmUp
         parts = raw.split(/!SLIDE */)
         parts.delete('')
         slides = parts.map.with_index do |slide,j|
+          @codemap = {}
           classes, md = slide.split("\n", 2)
-          html = Redcarpet.new(md).to_html
+          html = Redcarpet.new(extract_code md).to_html
+          html = process_code(html)
           Slide.new(j, classes, md, html)
         end
         Section.new(i, title, slides)
       end
+    end
+
+    # Code taken from gollum (http://github.com/github/gollum)
+    def extract_code(md)
+      md.gsub(/^``` ?(.+?)\r?\n(.+?)\r?\n```\r?$/m) do
+        id = Digest::SHA1.hexdigest($2)
+        @codemap[id] = { :lang => $1, :code => $2 }
+        id
+      end
+    end
+
+    def process_code(data)
+      @codemap.each do |id, spec|
+        lang, code = spec[:lang], spec[:code]
+        if code.lines.all? { |line| line =~ /\A\r?\n\Z/ || line =~ /^(    |\t)/ }
+          code.gsub!(/^(    |\t)/m, '')
+        end
+        output = Albino.new(code, lang).colorize(:P => "nowrap")
+        data.gsub!(id, "<pre><code class=\"#{lang}\">#{output}</code></pre>")
+      end
+      data
     end
   end
 end
