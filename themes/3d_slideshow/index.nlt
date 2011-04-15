@@ -1,0 +1,24 @@
+<!doctype html>  
+<html>
+  <head>
+    <meta charset="utf-8">
+	<title><%= meta.title %></title>
+    <link href='http://fonts.googleapis.com/css?family=Crimson+Text:regular,600,bold' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <div id="main">
+      <% sections.each do |section| %>
+        <section id="section-<%= section.number %>">
+          <% section.slides.each do |slide| %>
+            <section id="slide-<%= section.number %>-<%= slide.number%>" class="<%= slide.classes %>">
+              <%= slide.html %>
+            </section>
+          <% end %>
+        </section>
+      <% end %>
+    </div>
+    <script src="/js/slideshow.js"></script>
+  </body>
+</html>

@@ -8,7 +8,7 @@ make amazing presentations!
 TODO
 ----
 
-* Code it :p
+* Add specs :p
 * Explain how to install and use it in README
 * Many more things
 
