@@ -3,6 +3,8 @@ require "goliath/api"
 
 module SlideEmUp
   class SlidesAPI < Goliath::API
+    use ::Rack::ContentLength
+
     def initialize(presentation)
       @presentation = presentation
     end

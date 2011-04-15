@@ -8,9 +8,7 @@ presentation = SlideEmUp::Presentation.new(Dir.pwd)
 
 runner = Goliath::Runner.new(ARGV, nil)
 runner.app = Rack::Builder.new do
-  map '/slides' do
-    use ::Rack::ContentLength
-    run SlideEmUp::SlidesAPI.new(presentation)
-  end
+  map '/slides' do run SlideEmUp::SlidesAPI.new(presentation) end
+  map '/'       do run SlideEmUp::AssetsAPI.new(presentation) end
 end
 runner.run
