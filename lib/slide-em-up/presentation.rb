@@ -15,10 +15,10 @@ module SlideEmUp
 
     def initialize(dir)
       infos   = extract_normal_infos(dir) || extract_infos_from_showoff(dir) || {}
-      infos   = { :title => "No title", :theme => "default" }.merge(infos)
-      @meta   = build_meta(infos[:title], dir)
-      @theme  = build_theme(infos[:theme])
-      @titles = infos[:sections]
+      infos   = { "title" => "No title", "theme" => "default" }.merge(infos)
+      @meta   = build_meta(infos["title"], dir)
+      @theme  = build_theme(infos["theme"])
+      @titles = infos["sections"]
     end
 
     def html
@@ -45,7 +45,7 @@ module SlideEmUp
       return unless File.exists?(filename)
       infos = Yajl::Parser.parse(File.read filename)
       sections = infos["sections"].map {|s| s["section"] }
-      { :title => infos["name"], :theme => "showoff", :sections => sections }
+      { "title" => infos["name"], "theme" => "showoff", "sections" => sections }
     end
 
     def build_meta(title, dir)
