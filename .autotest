@@ -1,0 +1,13 @@
+require 'autotest/bundler'
+require 'autotest/restart'
+
+Autotest.add_hook :initialize do |at|
+  at.testlib = 'minitest/spec'
+
+  at.clear_mappings
+  at.add_mapping(%r%^lib/(.*)\.rb$%) { |_,m| "spec/slide-em-up_spec.rb" }
+  at.add_mapping(%r%^spec/.*_spec\.rb$%) { |filename,_| filename }
+
+  at.add_exception 'coverage.info'
+  at.add_exception 'coverage'
+end

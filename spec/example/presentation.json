@@ -1,0 +1,5 @@
+{
+    "title": "An example presentation",
+    "theme": "3d_slideshow",
+    "sections": [ "one", "two", "three" ]
+}

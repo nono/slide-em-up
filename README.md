@@ -8,8 +8,6 @@ make amazing presentations!
 TODO
 ----
 
-* Add specs :p
-* https://github.com/rubygems/rubygems-test/blob/master/README.txt
 * Explain how to install and use it in README
 * Many more things
 

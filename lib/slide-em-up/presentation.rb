@@ -11,7 +11,7 @@ module SlideEmUp
     Section = Struct.new(:number, :title, :slides)
     Slide   = Struct.new(:number, :classes, :markdown, :html)
 
-    attr_accessor :meta, :theme, :common
+    attr_accessor :meta, :theme, :common, :titles
 
     def initialize(dir)
       infos   = extract_normal_infos(dir) || extract_infos_from_showoff(dir) || {}
@@ -23,7 +23,7 @@ module SlideEmUp
     end
 
     def html
-      str = File.read("#{theme.dir}/index.nlt")
+      str = File.read("#{theme.dir}/index.erb")
       Erubis::Eruby.new(str).result(:meta => meta, :theme => theme, :sections => sections)
     end
 
