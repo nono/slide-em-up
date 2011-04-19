@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+  Slides from Google (slides.html5rocks.com) cleaned up for new presentations
+
+  Copyright 2011 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Chrome DevRel Team (chrome-devrel@googlegroups.com)
+                 Alex Russell (slightlyoff@chromium.org)
+                 Brad Neuberg
+-->
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+	<title><%= meta.title %></title>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+    <link href="css/moon.css" class="theme" rel="stylesheet" />
+    <link href="css/sand.css" class="theme" rel="stylesheet" />
+    <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
+    <link href="css/default.css" class="theme" rel="stylesheet" media="screen" />
+  </head>
+  <body>
+
+    <div class="presentation">
+      <div id="presentation-counter">Loading...</div>
+      <div class="slides">
+        <div class="slide" id="landing-slide">
+          <section class="middle">
+            <p><%= meta.title %></p>
+            <p>Press <span id="left-init-key" class="key">&rarr;</span> key to advance.</p>
+          </section>
+        </div>
+      <% sections.each do |section| %>
+          <% section.slides.each do |slide| %>
+            <div id="slide-<%= section.number %>-<%= slide.number%>" class="slide">
+              <section class="<%= slide.classes %>">
+                <%= slide.html %>
+              </section>
+            </div>
+          <% end %>
+      <% end %>
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+    <script src="js/slides.js"></script>
+  </body>
+</html>
