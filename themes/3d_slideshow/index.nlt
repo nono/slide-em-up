@@ -5,7 +5,7 @@
 	<title><%= meta.title %></title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/colorful.css">
+    <link rel="stylesheet" href="css/pygments/colorful.css">
   </head>
   <body>
     <div id="main">

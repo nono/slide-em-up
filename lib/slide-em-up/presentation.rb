@@ -11,13 +11,14 @@ module SlideEmUp
     Section = Struct.new(:number, :title, :slides)
     Slide   = Struct.new(:number, :classes, :markdown, :html)
 
-    attr_accessor :meta, :theme
+    attr_accessor :meta, :theme, :common
 
     def initialize(dir)
       infos   = extract_normal_infos(dir) || extract_infos_from_showoff(dir) || {}
       infos   = { "title" => "No title", "theme" => "default" }.merge(infos)
       @meta   = build_meta(infos["title"], dir)
       @theme  = build_theme(infos["theme"])
+      @common = build_theme("common")
       @titles = infos["sections"]
     end
 
@@ -27,9 +28,10 @@ module SlideEmUp
     end
 
     def path_for_asset(asset)
-      try = "#{theme.dir}/#{asset}"
-      return try if File.exists? try
-      Dir["#{meta.dir}/**/#{asset}"].first
+      Dir[  "#{meta.dir}#{asset}"   ].first ||
+        Dir["#{theme.dir}#{asset}"  ].first ||
+        Dir["#{common.dir}#{asset}" ].first ||
+        Dir["#{meta.dir}/**#{asset}"].first
     end
 
   protected

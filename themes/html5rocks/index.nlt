@@ -40,6 +40,7 @@
           <section class="middle">
             <p><%= meta.title %></p>
             <p>Press <span id="left-init-key" class="key">&rarr;</span> key to advance.</p>
+            <p>Press <span class="key">t</span> to switch CSS theme.</p>
           </section>
         </div>
       <% sections.each do |section| %>
