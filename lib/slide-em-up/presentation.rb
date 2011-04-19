@@ -1,5 +1,5 @@
 require "albino"
-require "nolate"
+require "erubis"
 require "redcarpet"
 require "yajl"
 
@@ -24,13 +24,13 @@ module SlideEmUp
 
     def html
       str = File.read("#{theme.dir}/index.nlt")
-      nolate str, :meta => meta, :theme => theme, :sections => sections
+      Erubis::Eruby.new(str).result(:meta => meta, :theme => theme, :sections => sections)
     end
 
     def path_for_asset(asset)
-      Dir[  "#{meta.dir}#{asset}"   ].first ||
-        Dir["#{theme.dir}#{asset}"  ].first ||
-        Dir["#{common.dir}#{asset}" ].first ||
+      Dir[     "#{meta.dir}#{asset}"].first ||
+        Dir[  "#{theme.dir}#{asset}"].first ||
+        Dir[ "#{common.dir}#{asset}"].first ||
         Dir["#{meta.dir}/**#{asset}"].first
     end
 
@@ -80,7 +80,8 @@ module SlideEmUp
         slides = parts.map.with_index do |slide,j|
           @codemap = {}
           classes, md = slide.split("\n", 2)
-          html = Redcarpet.new(extract_code md).to_html
+          tmp  = extract_code(md)
+          html = Redcarpet.new(tmp).to_html
           html = process_code(html)
           Slide.new(j, classes, md, html)
         end
