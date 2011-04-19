@@ -5,11 +5,14 @@ Slide'em up is a presentation tool. You write some slides in markdown, choose
 a style and it displays it in HTML5. With a browser in full-screen, you can
 make amazing presentations!
 
+
 TODO
 ----
 
 * Explain how to install and use it in README
+* Same command line stuff than showoff
 * Many more things
+* Add more themes
 
 
 Issues or Suggestions
