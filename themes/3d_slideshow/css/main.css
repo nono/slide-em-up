@@ -9,11 +9,29 @@
 
 @font-face {
 	font-family: 'League Gothic';
-	src: url('/fonts/league_gothic-webfont.ttf') format('truetype');
+	src: url('../fonts/league_gothic-webfont.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Crimson Text Semibold'), local('CrimsonText-Semibold'), url('../fonts/crimson_text_semibold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Crimson Text'), local('CrimsonText-Roman'), url('../fonts/crimson_text.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Crimson Text Bold'), local('CrimsonText-Bold'), url('../fonts/crimson_text_bold.ttf') format('truetype');
+}
 
 /*********************************************
  * GLOBAL STYLES
