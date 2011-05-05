@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title><%= meta.title %></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
+    <% (theme.css + meta.css).each do |css| %>
+      <link rel="stylesheet" href="<%= css %>">
+    <% end %>
     <link rel="stylesheet" href="css/pygments/colorful.css">
   </head>
   <body>
@@ -19,6 +20,8 @@
         </section>
       <% end %>
     </div>
-    <script src="js/slideshow.js"></script>
+    <% (theme.js + meta.js).each do |js| %>
+      <script src="<%= js %>"></script>
+    <% end %>
   </body>
 </html>

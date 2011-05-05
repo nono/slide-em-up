@@ -19,6 +19,5 @@ Gem::Specification.new do |s|
   s.add_dependency "erubis", "~>2.7"
   s.add_dependency "yajl-ruby", "~>0.8"
   s.add_dependency "albino", "~>1.3"
-  s.add_dependency "posix-spawn", "=0.3.3"
   s.add_development_dependency "minitest", "~>2.0"
 end
