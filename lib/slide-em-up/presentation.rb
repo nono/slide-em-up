@@ -1,4 +1,5 @@
 require "albino"
+require "digest/sha1"
 require "erubis"
 require "redcarpet"
 require "yajl"
