@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title><%= meta.title %></title>
-    <% (theme.css + meta.css).each do |css| %>
+    <% css_files = theme.css + meta.css %>
+    <% if css = css_files.delete("css/reset.css") %>
+      <link rel="stylesheet" href="<%= css %>">
+    <% end %>
+    <% css_files.each do |css| %>
       <link rel="stylesheet" href="<%= css %>">
     <% end %>
     <link rel="stylesheet" href="css/pygments/colorful.css">
