@@ -32,5 +32,10 @@ Credits
 Scott Chacon is the guy who made [ShowOff](https://github.com/schacon/showoff).
 Slide'em up is only a copy of ShowOff, where sinatra was replaced by Goliath.
 
+Themes were picked from the internet. Thanks to:
+- Hakim El Hattab for 3d_slideshow
+- Google for html5rocks
+- Vadim Makeev for shower
+
 Copyright (c) 2011 Bruno Michel <bruno.michel@af83.com>
 Released under the MIT license

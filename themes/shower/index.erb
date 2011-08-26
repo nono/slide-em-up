@@ -1,0 +1,29 @@
+<!doctype html>  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1274, user-scalable=no">
+    <title><%= meta.title %></title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pygments/colorful.css">
+  </head>
+  <body class="list">
+    <header class="caption">
+      <h1><%= meta.title %></h1>
+    </header>
+    <% sections.each do |section| %>
+      <% section.slides.each do |slide| %>
+        <div id="slide-<%= section.number %>-<%= slide.number%>" class="slide <%= slide.classes %>">
+          <div><section>
+            <%= slide.html %>
+          </section></div>
+        </div>
+      <% end %>
+    <% end %>
+	<div class="progress"><div></div></div>
+    <% (theme.js + meta.js).each do |js| %>
+      <script src="<%= js %>"></script>
+    <% end %>
+	<!-- Copyright © 2010–2011 Vadim Makeev, http://pepelsbey.net/ -->
+  </body>
+</html>

@@ -1,0 +1,18 @@
+/* PTSans */
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+
+/* Droid Sans Mono */
+@font-face {
+	font-family:'Droid Sans Mono';
+	src:local('Droid Sans Mono'),
+		url(../fonts/DroidSansMono.ttf) format('truetype'),
+		url(../fonts/DroidSansMono.svg#DroidSansMono) format('svg');
+	}
+
+/* Linker */
+@font-face {
+	font-family:'Target Blank';
+	src:url(../fonts/TargetBlank.otf) format('opentype'),
+		url(../fonts/TargetBlank.svg#TargetBlank) format('svg');
+	}
