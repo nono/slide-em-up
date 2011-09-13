@@ -1,5 +1,7 @@
 module SlideEmUp
-  autoload :Presentation, "slide-em-up/presentation"
-  autoload :SlidesAPI,    "slide-em-up/slides_api"
-  autoload :VERSION,      "slide-em-up/version"
+  autoload :Presentation,    "slide-em-up/presentation"
+  autoload :SlidesAPI,       "slide-em-up/slides_api"
+  autoload :RemoteAPI,       "slide-em-up/remote_api"
+  autoload :Routes,          "slide-em-up/routes"
+  autoload :VERSION,         "slide-em-up/version"
 end

@@ -5,7 +5,8 @@ require "goliath/runner"
 
 
 presentation = SlideEmUp::Presentation.new(Dir.pwd)
+opts = {:remote_key => ENV['APIKEY']}
 
 runner = Goliath::Runner.new(ARGV, nil)
-runner.app = SlideEmUp::SlidesAPI.new(presentation)
+runner.app = SlideEmUp::Routes.run(presentation, opts)
 runner.run

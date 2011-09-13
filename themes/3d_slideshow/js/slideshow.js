@@ -42,9 +42,28 @@ var Slideshow = (function(){
 		document.addEventListener('keydown', onDocumentKeyDown, false);
 		document.addEventListener('touchstart', onDocumentTouchStart, false);
 		window.addEventListener('hashchange', onWindowHashChange, false);
+
+		startEventSourceHandler('/remote/sub/events');
 		
 		// Read the initial state of the URL (hash)
 		readURL();
+	}
+
+	function startEventSourceHandler (uri) {
+    var source = new EventSource(uri);
+
+    source.onmessage = function(e) {
+      switch(e.data){
+        case 'next':
+          Slideshow.navigateRight();
+          break;
+        case 'prev':
+          Slideshow.navigateLeft();
+          break;
+        default:
+          console.log(e);
+      };
+    };
 	}
 	
 	/**
