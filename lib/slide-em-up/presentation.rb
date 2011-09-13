@@ -16,7 +16,7 @@ module SlideEmUp
 
     def initialize(dir)
       infos   = extract_normal_infos(dir) || extract_infos_from_showoff(dir) || {}
-      infos   = { "title" => "No title", "theme" => "default" }.merge(infos)
+      infos   = { "title" => "No title", "theme" => "shower" }.merge(infos)
       @meta   = build_meta(infos["title"], dir)
       @theme  = build_theme(infos["theme"])
       @common = build_theme("common")

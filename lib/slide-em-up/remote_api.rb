@@ -4,10 +4,10 @@ module SlideEmUp
   class RemoteAPI < Goliath::API
     def initialize(key)
       # Secret token...
-      @@key  = key
+      @key  = key
 
       # Share channel between connections
-      @@chan = ::EM::Channel.new
+      @chan = ::EM::Channel.new
     end
 
     def response(env)
@@ -18,9 +18,9 @@ module SlideEmUp
       return stream_events(env) if 'events' == action
 
       # Sending events is restricted
-      return forbidden unless @@key && key == @@key
+      return forbidden unless key == @key
 
-      @@chan.push(action)
+      @chan.push(action)
       [200, {
         "Content-Type"   => "text/plain; charset=utf-8",
         "Content-Length" => Rack::Utils.bytesize(action).to_s
@@ -30,16 +30,16 @@ module SlideEmUp
     def on_close(env)
       return unless env['subscription']
       env.logger.info "Stream connection closed."
-      @@chan.unsubscribe(env['subscription'])
+      @chan.unsubscribe(env['subscription'])
     end
 
-    protected
+  protected
 
     def stream_events(env)
-      env['subscription'] = @@chan.subscribe do |msg|
-        env.stream_send("data: #{ msg }\n\n")
+      env['subscription'] = @chan.subscribe do |msg|
+        env.stream_send("data: #{msg}\n\n")
       end
-      streaming_response(200, {'Content-Type' => 'text/event-stream'})
+      streaming_response(200, {"Content-Type" => "text/event-stream"})
     end
 
     def forbidden

@@ -50,6 +50,8 @@ var Slideshow = (function(){
 	}
 
 	function startEventSourceHandler (uri) {
+    if (window['EventSource'] == undefined) return ;
+
     var source = new EventSource(uri);
 
     source.onmessage = function(e) {
@@ -60,12 +62,18 @@ var Slideshow = (function(){
         case 'prev':
           Slideshow.navigateLeft();
           break;
+        case 'up':
+          Slideshow.navigateUp();
+          break;
+        case 'down':
+          Slideshow.navigateDown();
+          break;
         default:
           console.log(e);
       };
     };
 	}
-	
+
 	/**
 	 * Handler for the document level 'keydown' event.
 	 * 

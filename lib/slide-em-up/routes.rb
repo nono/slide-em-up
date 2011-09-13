@@ -1,3 +1,5 @@
+require "rack/builder"
+
 
 module SlideEmUp
   class Routes
@@ -13,5 +15,6 @@ module SlideEmUp
         end
       end
     end
+
   end
 end

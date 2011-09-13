@@ -81,6 +81,47 @@
 		}
 	}
 
+	function startEventSourceHandler (uri) {
+    if (window['EventSource'] == undefined) return ;
+
+    var source = new EventSource(uri);
+		var current_slide_number = getCurrentSlideNumber();
+
+    source.onmessage = function(e) {
+      switch(e.data){
+        case 'next':
+          current_slide_number++;
+          goToSlide(current_slide_number);
+          break;
+        case 'prev':
+          current_slide_number--;
+          goToSlide(current_slide_number);
+          break;
+        case 'up':
+          if (!isSlideListMode()) {
+            e.preventDefault();
+
+            history.pushState(null, null, url.pathname + getSlideHashByNumber(current_slide_number));
+            enterSlideListMode();
+            scrollToCurrentSlide();
+          }
+          break;
+        case 'down':
+          if (isSlideListMode()) {
+            e.preventDefault();
+
+            history.pushState(null, null, url.pathname + '?full' + getSlideHashByNumber(current_slide_number));
+            enterSingleSlideMode();
+
+            updateProgress(current_slide_number);
+          }
+          break;
+        default:
+          console.log(e);
+      };
+    };
+	}
+
 	window.addEventListener('DOMContentLoaded', function () {
 		if (!isSlideListMode()) {
 			// "?full" is present without slide hash so we should display first
@@ -210,4 +251,5 @@
 		}
 	}, false);
 
+  startEventSourceHandler('/remote/sub/events');
 }());

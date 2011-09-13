@@ -304,6 +304,7 @@
 	      function(e) { if (e.state) { _t.go(e.state); } }, false);
 	  query('#left-init-key').addEventListener('click',
 	      function() { _t.next(); }, false);
+    this._startEventSource('/remote/sub/events');
 	  this._update();
 	};
 
@@ -320,6 +321,26 @@
 	    });
 	    return slideCount + 1;  
 	  },
+    _startEventSource: function(uri) {
+      if (window['EventSource'] == undefined) return ;
+
+      var source = new EventSource(uri);
+      var _t = this;
+      source.onmessage = function(e) {
+        switch(e.data){
+          case 'next':
+            _t.next(); break;
+          case 'prev':
+            _t.prev(); break;
+          case 'up':
+            _t.showNotes(); break;
+          case 'down':
+            _t.switch3D(); break;
+          default:
+            console.log(e);
+        };
+      };
+    },
 	  _update: function(dontPush) {
 	    // in order to delay the time where the counter shows the slide number we check if 
 	    // the slides are already loaded (so we show the loading... instead)
