@@ -82,7 +82,7 @@ like this:
 Themes
 ------
 
-Several themes are available: shower, 3d_slideshow and html5rocks.
+Several themes are available: shower, 3d_slideshow, html5rocks and CSSS.
 To choose the theme for your presentation, edit the `presentation.json`
 file and change the `"theme"` element.
 
@@ -138,6 +138,7 @@ Themes were picked from the internet. Thanks to:
 - Hakim El Hattab for 3d_slideshow
 - Google for html5rocks
 - Vadim Makeev for shower
+- Lea Verou for CSSS
 
 Copyright (c) 2011 Bruno Michel <bruno.michel@af83.com>
 Released under the MIT license
