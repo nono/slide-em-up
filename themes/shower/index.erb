@@ -6,6 +6,9 @@
     <title><%= meta.title %></title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pygments/colorful.css">
+    <% meta.css.each do |css| %>
+    <link rel="stylesheet" href="<%= css%>">
+    <% end %>
   </head>
   <body class="list">
     <header class="caption">
