@@ -9,6 +9,7 @@
  * Variables
  */
 .slide h2,
+section.slide h1,
 section > header.slide > h1 {
 	font-family: 'Helvetica Neue', Helvetica, sans-serif;
 	font-weight: 100;
@@ -111,10 +112,16 @@ strong, b {
 	text-shadow: .03em .03em .1em white;
 }
 
+	section.slide h1 {
+		font-family: 'Helvetica Neue', Helvetica, sans-serif;
+		font-weight: 100;
+		font-size: 1.1in;
+	}
+
 	.slide h2 {
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
 		font-weight: 100;
-		font-size: 1.2in;
+		font-size: 0.8in;
 	}
 	
 	.slide p,
