@@ -11,8 +11,8 @@ How to do your first presentation with Slide'em up?
 
 1. Install slide-em-up: `gem install slide-em-up`
 2. Create a directory for your presentation: `mkdir foobar && cd foobar`
-3. Create a section for your slides: `mkdir main_section`
-4. Write some slides: `vim main_section/slides.md`
+3. Create a section for your slides: `mkdir main`
+4. Write some slides: `vim main/slides.md`
 
        !SLIDE
        # My First slide #
@@ -26,8 +26,10 @@ How to do your first presentation with Slide'em up?
 
        {
          "title": "My first presentation",
-         "theme": "shower",
-         "sections": ["main_section"]
+         "theme": "CSSS",
+         "sections": {
+             "main": "Title of my main section"
+         }
        }
 
 6. Launch the tool: `slide-em-up`
@@ -114,6 +116,8 @@ TODO
 * Same command line stuff than showoff
 * Add a showoff theme for compatibility
 * Many more themes and features
+* Favicon
+* Optimize process_code (pygments.rb?)
 
 
 Issues or Suggestions

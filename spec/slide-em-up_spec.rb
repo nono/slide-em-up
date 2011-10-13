@@ -26,10 +26,9 @@ describe SlideEmUp do
     end
 
     it "has 3 sections, each one with a title" do
-      @presentation.titles.length.must_equal 3
-      @presentation.titles[0].must_equal "one"
-      @presentation.titles[1].must_equal "two"
-      @presentation.titles[2].must_equal "three"
+      @presentation.parts.keys.length.must_equal 3
+      expected = { "one" => "one", "two" => "two", "three" => "three" }
+      @presentation.parts.must_equal expected
     end
   end
 

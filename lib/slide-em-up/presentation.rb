@@ -9,10 +9,10 @@ module SlideEmUp
   class Presentation
     Meta    = Struct.new(:title, :dir, :css, :js)
     Theme   = Struct.new(:title, :dir, :css, :js)
-    Section = Struct.new(:number, :title, :slides)
+    Section = Struct.new(:number, :title, :dir, :slides)
     Slide   = Struct.new(:number, :classes, :markdown, :html)
 
-    attr_accessor :meta, :theme, :common, :titles
+    attr_accessor :meta, :theme, :common, :parts
 
     def initialize(dir)
       infos   = extract_normal_infos(dir) || extract_infos_from_showoff(dir) || {}
@@ -20,7 +20,8 @@ module SlideEmUp
       @meta   = build_meta(infos["title"], dir)
       @theme  = build_theme(infos["theme"])
       @common = build_theme("common")
-      @titles = infos["sections"]
+      @parts  = infos["sections"]
+      @parts  = Hash[@parts.zip @parts] if Array === @parts
     end
 
     def html
@@ -74,8 +75,8 @@ module SlideEmUp
     end
 
     def sections
-      @titles.map.with_index do |title,i|
-        raw = Dir["#{meta.dir}/#{title}/**/*.md"].sort.map { |f| File.read(f) }.join("\n\n")
+      @parts.map.with_index do |(dir,title),i|
+        raw = Dir["#{meta.dir}/#{dir}/**/*.md"].sort.map { |f| File.read(f) }.join("\n\n")
         parts = raw.split(/!SLIDE */)
         parts.delete('')
         slides = parts.map.with_index do |slide,j|
@@ -86,7 +87,7 @@ module SlideEmUp
           html = process_code(html)
           Slide.new(j, classes, md, html)
         end
-        Section.new(i, title, slides)
+        Section.new(i, title, dir, slides)
       end
     end
 
