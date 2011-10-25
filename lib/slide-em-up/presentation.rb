@@ -20,7 +20,7 @@ module SlideEmUp
       @meta   = build_meta(infos["title"], dir)
       @theme  = build_theme(infos["theme"])
       @common = build_theme("common")
-      @parts  = infos["sections"]
+      @parts  = infos["sections"] || raise(Exception, "check your presentation.json or showoff.json file")
       @parts  = Hash[@parts.zip @parts] if Array === @parts
     end
 
