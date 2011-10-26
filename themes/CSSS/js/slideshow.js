@@ -219,30 +219,6 @@ var self = window.SlideShow = function(container, slide) {
 		}
 	}, false);
 
-  if (window['EventSource'] != undefined) {
-    setTimeout(function() {
-        var source = new EventSource('/remote/sub/events');
-        source.onmessage = function(e) {
-          switch(e.data){
-            case 'next':
-              me.next();
-              break;
-            case 'prev':
-              me.prev();
-              break;
-            case 'up':
-              me.next(true);
-              break;
-            case 'down':
-              me.prev(true);
-              break;
-            default:
-              console.log(e);
-          };
-        };
-    }, 1000);
-  }
-	
 	// Rudimentary style[scoped] polyfill
 	var scoped = $$('style[scoped]', container);
 	
