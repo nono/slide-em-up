@@ -96,6 +96,8 @@ var self = window.SlideShow = function(container, slide) {
 		me.goto(location.hash.substr(1) || 0);
 	};
 	window.addEventListener('hashchange', this.onhashchange, false);
+
+    me.startEventSourceHandler('/remote/sub/events');
 	
 	if(window.name === 'projector') {
 		document.body.classList.add('projector');
@@ -464,7 +466,34 @@ self.prototype = {
 		}
 		
 		return false;
-	}
+	},
+
+    startEventSourceHandler: function(uri) {
+        if (window['EventSource'] == undefined) return ;
+
+        var source = new EventSource(uri);
+
+        var me = this;
+
+        source.onmessage = function(e) {
+            switch(e.data){
+                case 'next':
+                    me.next();
+                break;
+                case 'prev':
+                    me.previous();
+                break;
+                case 'up':
+                    me.end();
+                break;
+                case 'down':
+                    me.start();
+                break;
+                default:
+                    console.log(e);
+            };
+        };
+    }
 };
 
 /**********************************************
