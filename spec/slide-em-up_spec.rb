@@ -73,4 +73,13 @@ describe SlideEmUp do
       @html.must_match /<code class="ruby">.+<\/code>/m
     end
   end
+
+  describe "no json presentation" do
+    it 'raise error with nither presentation.json or showoff.json file' do
+      proc {
+        space_dir = File.expand_path("../example1/", __FILE__)
+        @presentation = SlideEmUp::Presentation.new(space_dir)
+      }.must_raise Exception
+    end
+  end
 end
