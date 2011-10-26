@@ -49,30 +49,30 @@ var Slideshow = (function(){
 		readURL();
 	}
 
-	function startEventSourceHandler (uri) {
-    if (window['EventSource'] == undefined) return ;
+    function startEventSourceHandler (uri) {
+        if (window['EventSource'] == undefined) return ;
 
-    var source = new EventSource(uri);
+        var source = new EventSource(uri);
 
-    source.onmessage = function(e) {
-      switch(e.data){
-        case 'next':
-          Slideshow.navigateRight();
-          break;
-        case 'prev':
-          Slideshow.navigateLeft();
-          break;
-        case 'up':
-          Slideshow.navigateUp();
-          break;
-        case 'down':
-          Slideshow.navigateDown();
-          break;
-        default:
-          console.log(e);
-      };
-    };
-	}
+        source.onmessage = function(e) {
+            switch(e.data){
+                case 'next':
+                    Slideshow.navigateRight();
+                break;
+                case 'prev':
+                    Slideshow.navigateLeft();
+                break;
+                case 'up':
+                    Slideshow.navigateUp();
+                break;
+                case 'down':
+                    Slideshow.navigateDown();
+                break;
+                default:
+                    console.log(e);
+            };
+        };
+    }
 
 	/**
 	 * Handler for the document level 'keydown' event.
