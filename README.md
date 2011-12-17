@@ -27,6 +27,7 @@ How to do your first presentation with Slide'em up?
        {
          "title": "My first presentation",
          "theme": "CSSS",
+         "duration": 20,
          "sections": {
              "main": "Title of my main section"
          }
@@ -84,9 +85,9 @@ like this:
 Themes
 ------
 
-Several themes are available: shower, 3d_slideshow, html5rocks and CSSS.
-To choose the theme for your presentation, edit the `presentation.json`
-file and change the `"theme"` element.
+Several themes are available: shower, 3d_slideshow, html5rocks, CSSS
+and memories. To choose the theme for your presentation, edit the
+`presentation.json` file and change the `"theme"` element.
 
 
 Remote Control

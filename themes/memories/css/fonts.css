@@ -1,0 +1,25 @@
+/* Droid Sans Mono */
+@font-face {
+  font-family: 'Droid Sans Mono';
+  src: local('Droid Sans Mono'),
+       url(../fonts/DroidSansMono.ttf) format('truetype'),
+       url(../fonts/DroidSansMono.svg#DroidSansMono) format('svg');
+}
+
+/* Yanone Kaffeesatz */
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Yanone Kaffeesatz Regular'),
+       local('YanoneKaffeesatz-Regular'),
+       url('../fonts/YanoneKaffeesatz-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Yanone Kaffeesatz Bold'),
+       local('YanoneKaffeesatz-Bold'),
+       url('../fonts/YanoneKaffeesatz-Bold.woff') format('woff');
+}

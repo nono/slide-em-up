@@ -7,7 +7,7 @@
     <% (theme.css + meta.css).each do |css| %>
       <link rel="stylesheet" href="<%= css%>">
     <% end %>
-    <link rel="stylesheet" href="css/pygments/native.css">
+    <link rel="stylesheet" href="css/pygments/solarized.css">
   </head>
   <body data-duration="<%= meta.duration %>">
     <section>
@@ -30,6 +30,6 @@
     <% (theme.js + meta.js).each do |js| %>
       <script src="<%= js %>"></script>
     <% end %>
-    <script>var slideshow = new SlideShow();</script>
+    <script>slideshow = new SlideShow();</script>
   </body>
 </html>

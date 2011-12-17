@@ -1,0 +1,145 @@
+/**
+	Basic CSS so that the slideshow script functions as a slideshow
+	@author Lea Verou
+	@version 1.0
+ */
+
+/**
+ * "Variables"
+ */
+.slide,
+.delayed,
+.delayed-children > * {
+	-webkit-transition:1s;
+	-ms-transition:1s;
+	-moz-transition:1s;
+	-o-transition:1s;
+	transition:1s;
+	-moz-transition-property: -webkit-transform, opacity, left, top, right, bottom;
+	-ms-transition-property: -webkit-transform, opacity, left, top, right, bottom;
+	-o-transition-property: -webkit-transform, opacity, left, top, right, bottom;
+	-webkit-transition-property: -webkit-transform, opacity, left, top, right, bottom;
+	transition-property: -webkit-transform, opacity, left, top, right, bottom;
+}
+ 
+/**
+ * Styles
+ */
+ 
+ html, body {
+ 	height: 100%;
+ }
+ 
+ body {
+ 	counter-reset: slide;
+ 	margin: 0;
+ }
+ 
+ .slide {
+ 	visibility: hidden;
+ 	position:absolute;
+ 	top:0;
+ 	right:0;
+ 	bottom:0;
+ 	left:0;
+ 	z-index:1;
+ 	
+ 	font-size:250%;
+ 	line-height:1.6;
+ 	 	
+ 	opacity:0;
+ 	height:0;
+ 	width:0;
+ 	overflow:hidden;
+ 	
+ 	counter-increment: slide;
+ }
+ 
+ .slide:target {
+ 	visibility: visible;
+ 	z-index:100;
+ 	opacity:1;
+ 	height:auto;
+ 	width: auto;
+ 	overflow: visible;
+}
+
+/**
+	Slide numbers
+ */ 
+.slide:target::before {
+  	content: counter(slide);
+  	position: absolute;
+  	top: .05in;
+  	right: .5em;
+  	z-index: 1010;
+  	
+  	font-size: .15in;
+  	font-weight: 900;
+  	text-shadow: .05em .05em .1em black;
+  	text-align: center;
+  	padding: .1em .3em 0;
+  	min-width: 1.6em;
+  	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+  	
+  	-moz-border-radius: 999px;
+  	-webkit-border-radius: 999px;
+  	border-radius: 999px;
+}
+
+/* If there's nothing selected, show the first */
+.slide:first-child {
+	z-index:2;
+}
+
+/* Delayed items that are shown incrementally after the slide is */
+.delayed,
+.delayed-children > * {
+	opacity: 0;
+}
+
+.delayed.displayed,
+.delayed-children > .displayed {
+	opacity: .3;
+}
+
+.delayed.current,
+.delayed-children > .current,
+.delayed.displayed.non-dismissable,
+.delayed-children > .displayed.non-dismissable {
+	opacity: 1;
+}
+
+/* Timer */
+
+#timer {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:101;
+	width:0%;
+	height:16px;
+	line-height: 16px;
+	padding: 0 5px;
+	background:rgba(0,0,0,.5);
+	overflow: hidden;
+	text-align: right;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#timer:before {
+	content: 'Progress ';
+	text-transform: uppercase;
+	color: white;
+	font-size: 12px;
+    letter-spacing: 0;
+}
+
+#timer.end {
+	width: 100%;
+}
