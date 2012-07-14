@@ -58,13 +58,18 @@ strong, b {
 
 	section.slide h1 {
 		font-weight: bold;
-		font-size: 1.4in;
+		font-size: 1.0in;
 	}
 
 	.slide h2 {
 		font-weight: bold;
-		font-size: 1in;
+		font-size: 0.8in;
 	}
+
+    .slide h3 {
+        font-weight: bold;
+        font-size: 0.6in;
+    }
 
 	.slide p,
 	.slide li {
@@ -110,10 +115,12 @@ section > header.slide > h1 {
     left: 0;
     right: 0;
     margin-top: -1.2em;
-    font-size: 400%;
+    font-size: 300%;
     line-height: 1;
     text-align: center;
 }
+
+.two_cols pre { float: left; width: 43%; margin-right: 4%; }
 
 .white   { color: #ffffff; }
 .light3  { color: #fdf6e3; }
