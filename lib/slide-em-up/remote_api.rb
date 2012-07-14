@@ -1,5 +1,6 @@
 require "goliath/api"
 
+
 module SlideEmUp
   class RemoteAPI < Goliath::API
     def initialize(key)
@@ -39,7 +40,7 @@ module SlideEmUp
       env['subscription'] = @chan.subscribe do |msg|
         env.stream_send("data: #{msg}\n\n")
       end
-      streaming_response(200, {"Content-Type" => "text/event-stream"})
+      streaming_response(202, {"Content-Type" => "text/event-stream"})
     end
 
     def forbidden

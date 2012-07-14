@@ -1,7 +1,4 @@
-require "albino"
-require "digest/sha1"
 require "erubis"
-require "redcarpet"
 require "yajl"
 
 
@@ -10,7 +7,8 @@ module SlideEmUp
     Meta    = Struct.new(:title, :dir, :css, :js, :author, :duration)
     Theme   = Struct.new(:title, :dir, :css, :js)
     Section = Struct.new(:number, :title, :dir, :slides)
-    class Slide < Struct.new(:number, :classes, :markdown, :html)
+
+    class Slide < Struct.new(:number, :classes, :html)
       def extract_title
         return @title if @title
         html.sub!(/<h(\d)>(.*)<\/h\1>/) { @title = $2; "" }
@@ -90,34 +88,11 @@ module SlideEmUp
         slides = parts.map.with_index do |slide,j|
           @codemap = {}
           classes, md = slide.split("\n", 2)
-          tmp  = extract_code(md)
-          html = Redcarpet.new(tmp).to_html
-          html = process_code(html)
-          Slide.new(j, classes, md, html)
+          html = Markdown.render(md)
+          Slide.new(j, classes, html)
         end
         Section.new(i, title, dir, slides)
       end
-    end
-
-    # Code taken from gollum (http://github.com/github/gollum)
-    def extract_code(md)
-      md.gsub(/^``` ?(.+?)\r?\n(.+?)\r?\n```\r?$/m) do
-        id = Digest::SHA1.hexdigest($2)
-        @codemap[id] = { :lang => $1, :code => $2 }
-        id
-      end
-    end
-
-    def process_code(data)
-      @codemap.each do |id, spec|
-        lang, code = spec[:lang], spec[:code]
-        if code.lines.all? { |line| line =~ /\A\r?\n\Z/ || line =~ /^(    |\t)/ }
-          code.gsub!(/^(    |\t)/m, '')
-        end
-        output = Albino.new(code, lang).colorize(:P => "nowrap")
-        data.gsub!(id, "<pre><code class=\"#{lang}\">#{output}</code></pre>")
-      end
-      data
     end
   end
 end
