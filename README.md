@@ -112,6 +112,18 @@ setting the `APIKEY` environment variable:
     APIKEY=foobar slide-em-up
 
 
+Examples
+--------
+
+I'm using slide-em-up for my own presentations, so you can find some real
+slides powered by slide-em-up on https://github.com/nono/Presentations.
+
+For example, you can try the presentation "Welcome to the nice world of Golang"
+on http://blog.menfin.info/Presentations/20120709_Golang_introduction/ and
+see the sources of it on
+https://github.com/nono/Presentations/tree/master/20120709_Golang_introduction.
+
+
 Issues or Suggestions
 ---------------------
 
