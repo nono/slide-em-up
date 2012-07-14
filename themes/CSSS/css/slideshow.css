@@ -10,16 +10,8 @@
 .slide,
 .delayed,
 .delayed-children > * {
-	-webkit-transition:1s;
-	-ms-transition:1s;
-	-moz-transition:1s;
-	-o-transition:1s;
-	transition:1s;
-	-moz-transition-property: -webkit-transform, opacity, left, top, right, bottom;
-	-ms-transition-property: -webkit-transform, opacity, left, top, right, bottom;
-	-o-transition-property: -webkit-transform, opacity, left, top, right, bottom;
-	-webkit-transition-property: -webkit-transform, opacity, left, top, right, bottom;
-	transition-property: -webkit-transform, opacity, left, top, right, bottom;
+	transition:.5s;
+	transition-property: transform, opacity, left, top, right, bottom, background;
 }
  
 /**
@@ -31,50 +23,40 @@
  }
  
  body {
- 	counter-reset: slide;
  	margin: 0;
  }
  
- .slide {
- 	visibility: hidden;
- 	position:absolute;
- 	top:0;
- 	right:0;
- 	bottom:0;
- 	left:0;
- 	z-index:1;
- 	
- 	font-size:250%;
- 	line-height:1.6;
- 	 	
- 	opacity:0;
- 	height:0;
- 	width:0;
- 	overflow:hidden;
- 	
- 	counter-increment: slide;
- }
+.slide {
+	display: none;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	z-index:1;
+	
+	font-size:250%;
+	line-height:1.6;
+}
  
  .slide.previous,
  .slide:target,
- .slide:target + .slide, /* just in case, not really needed */
  .slide.next {
- 	visibility: visible;
+	display: block;
+	opacity:0;
+	overflow:hidden;
  }
  
  .slide:target {
  	z-index:100;
  	opacity:1;
- 	height:auto;
- 	width: auto;
  	overflow: visible;
 }
 
 /**
 	Slide numbers
  */ 
-.slide:target::before {
-  	content: counter(slide);
+#indicator {
   	position: absolute;
   	top: .05in;
   	right: .5em;
@@ -88,12 +70,7 @@
   	text-align: center;
   	padding: .1em .3em 0;
   	min-width: 1.6em;
-  	-moz-box-sizing: border-box;
-  	-webkit-box-sizing: border-box;
   	box-sizing: border-box;
-  	
-  	-moz-border-radius: 999px;
-  	-webkit-border-radius: 999px;
   	border-radius: 999px;
 }
 
@@ -116,9 +93,47 @@
 .delayed.current,
 .delayed-children > .current,
 .delayed.displayed.non-dismissable,
-.delayed-children > .displayed.non-dismissable {
+.delayed-children > .displayed.non-dismissable, /* non-dismissable name is deprecated */
+.delayed.displayed.persistent,
+.delayed-children > .displayed.persistent,
+.delayed-children.persistent > .displayed {
 	opacity: 1;
 }
+
+/**
+	iframe slides
+ */
+.iframe.slide {
+	padding: 0 !important;
+	text-align: center;
+} 
+
+	.iframe.slide > h1 {
+		position: absolute;
+		bottom: 0; right: 0; left: 0;
+		background: rgba(0,0,0,.5);
+		font-size: 100%;
+	}
+	
+		.iframe.slide > h1 > a {
+			display: inline-block;
+			padding: .2em .5em;
+			
+			color: white;
+			text-align: center;
+			text-decoration: none;
+			text-shadow: 0 -.05em .05em black;
+		}
+	
+	.slide > iframe:only-of-type {
+		position: absolute;
+		top: 0;
+		left: 0;
+		border: 0;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+	}
 
 /**
 	Show thumbnails
@@ -132,9 +147,6 @@
 .presenter .slide.next {
 	width: 1024px;
 	height: 768px;
-	
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	
 	float: left;
@@ -144,14 +156,7 @@
 	margin:-292px -395px;
 	cursor: pointer;
 	
-	-moz-transform: scale(.2, .2);
-	-o-transform: scale(.2, .2);
-	-webkit-transform: scale(.2, .2);
 	transform: scale(.2, .2);
-	
-	-webkit-transition:1s -webkit-transform;
-	-moz-transition:1s -moz-transform;
-	-o-transition:1s -o-transform;
 	transition:1s transform;
 }
 
@@ -172,7 +177,7 @@
 .show-thumbnails .slide:target,
 .presenter .slide:target + .slide {
 	outline: 20px solid rgba(255, 255, 255, .6);
-	-moz-outline-radius:5px;
+	outline-radius:5px;
 	
 	box-shadow: 5px 5px 10px black;
 }
@@ -198,44 +203,13 @@
 	font-size: 250%;
 	text-align: center;
 	text-shadow: .05em .05em .1em black;
-	
-	-moz-transform: none;
-	-ms-transform: none;
-	-o-transform: none;
-	-webkit-transform: none;
 	transform: none;
 }
 
 /* Hide all elements in slide by hitting Ctrl + J or Shift + J */
 .hide-elements .slide:target > * {
 	opacity: 0;
-	
-	-moz-transition:.5s;
-	-webkit-transition:.5s;
-	-o-transition:.5s;
 	transition:.5s;
-}
-
-/* Mark slides as incomplete to spot them easier */
-.incomplete.slide::after {
-	content: 'INCOMPLETE';
-	font-weight: bold;
-	position: absolute;
-	top: 40%;
-	left: 30%;
-	padding: .1em .4em 0;
-	border: .1em solid;
-	color: rgba(255, 0, 0, .8);
-	font-size: 140%;
-	
-	-moz-border-radius: .2em;
-	-webkit-border-radius: .2em;
-	border-radius: .2em;
-	
-	-moz-transform: rotate(30deg);
-	-o-transform: rotate(30deg);
-	-webkit-transform: rotate(30deg);
-	transform: rotate(30deg);
 }
 
 /* Timer */
@@ -252,50 +226,25 @@
 	background:rgba(0,0,0,.5);
 	overflow: hidden;
 	text-align: right;
-	
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	transition: linear;
 }
 
-#timer:before {
-	content: 'Progress ';
-	text-transform: uppercase;
-	color: white;
-	font-size: 9px;
-}
+	#timer:before {
+		content: 'Progress ';
+		text-transform: uppercase;
+		color: white;
+		font-size: 9px;
+	}
 
 #timer.end {
 	width: 100%;
 }
 
-/* Ribbon */
-[data-type].slide:not(.hide-ribbon):after {
-	content: attr(data-type);
-	position: fixed;
-	top: 0;
+#timer.end.overtime {
+	width: 0%;
+	left: auto;
 	right: 0;
-	color: white;
-	font-size: 50%;
-	text-align: center;
-	text-transform: uppercase;
-	font-weight: bold;
-	background: hsl(40,100%,50%);
-	background-image: -webkit-linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
-	line-height: 1.6;
-	min-width: 20em;
-	
-	-moz-box-shadow: 0 10px 5px -5px rgba(0,0,0,.3);
-	-webkit-box-shadow: 0 10px 5px -5px rgba(0,0,0,.3);
-	box-shadow: 0 10px 5px -5px rgba(0,0,0,.3);
-
-	-moz-transform: rotate(45deg) translate(6em, -2em);
-	-ms-transform: rotate(45deg) translate(6em, -2em);
-	-webkit-transform: rotate(45deg) translate(6em, -2em);
-	-o-transform: rotate(45deg) translate(6em, -2em);
-	transform: rotate(45deg) translate(6em, -2em);
 }
 
 /* Presenter & projector views */
@@ -320,9 +269,6 @@
 	background: rgba(255, 255, 255, .5);
 	color: black;
 	text-shadow: 0 1px white;
-	
-	-moz-box-shadow: .1em .1em .3em rgba(0,0,0,.5) inset;
-	-webkit-box-shadow: .1em .1em .3em rgba(0,0,0,.5) inset;
 	box-shadow: .1em .1em .3em rgba(0,0,0,.5) inset;
 }
 

@@ -18,6 +18,9 @@
       <% section.slides.each do |slide| %>
         <div id="slide-<%= section.number %>-<%= slide.number%>" class="slide <%= slide.classes %>">
           <div><section>
+            <header>
+              <h2><%= slide.extract_title %></h2>
+            </header>
             <%= slide.html %>
           </section></div>
         </div>

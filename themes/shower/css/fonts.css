@@ -1,13 +1,45 @@
 /* PTSans */
-@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
-@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
-
-/* Droid Sans Mono */
 @font-face {
-	font-family:'Droid Sans Mono';
-	src:local('Droid Sans Mono'),
-		url(../fonts/DroidSansMono.ttf) format('truetype'),
-		url(../fonts/DroidSansMono.svg#DroidSansMono) format('svg');
+	font-family:'PT Sans';
+	src:local('PT Sans'), local('PTSansRegular'),
+		url(../fonts/PTSans.woff) format('woff');
+	}
+@font-face {
+	font-weight:bold;
+	font-family:'PT Sans';
+	src:local('PT Sans Bold'), local('PTSansBold'),
+		url(../fonts/PTSans.Bold.woff) format('woff');
+	}
+@font-face {
+	font-style:italic;
+	font-family:'PT Sans';
+	src:local('PT Sans Italic'), local('PTSansItalic'),
+		url(../fonts/PTSans.Italic.woff) format('woff');
+	}
+@font-face {
+	font-style:italic;
+	font-weight:bold;
+	font-family:'PT Sans';
+	src:local('PT Sans Bold Italic'), local('PTSansBoldItalic'),
+		url(../fonts/PTSans.Bold.Italic.woff) format('woff');
+	}
+@font-face {
+	font-family:'PT Sans Narrow';
+	src:local('PT Sans Narrow'), local('PTSansNarrow'),
+		url(../fonts/PTSans.Narrow.woff) format('woff');
+	}
+@font-face {
+	font-family:'PT Sans Narrow';
+	font-weight:bold;
+	src:local('PT Sans Narrow Bold'), local('PTSansNarrowBold'),
+		url(../fonts/PTSans.Narrow.Bold.woff) format('woff');
+	}
+
+/* PT Mono */
+@font-face {
+	font-family:'PT Mono';
+	src:local('PT Mono'), local('PTMonoRegular'),
+		url(../fonts/PTMono.woff) format('woff');
 	}
 
 /* Linker */
