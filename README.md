@@ -41,7 +41,7 @@ How to do your first presentation with Slide'em up?
 Themes
 ------
 
-Several themes are available: `io2012`, `shower`, `3d_slideshow`,
+Several themes are available: `io2012`, `shower`, `3d_slideshow`, `reveal`,
 `html5rocks`, `CSSS` and `memories`. To choose the theme for your
 presentation, edit the `presentation.json` file and change the `"theme"`
 element.
@@ -132,7 +132,7 @@ replaced by Goliath.
 
 Themes were picked from the internet. Thanks to:
 
-- Hakim El Hattab for 3d_slideshow
+- Hakim El Hattab for 3d_slideshow and reveal
 - Google for html5rocks
 - Vadim Makeev for shower
 - Lea Verou for CSSS (and its modified version, memories)
