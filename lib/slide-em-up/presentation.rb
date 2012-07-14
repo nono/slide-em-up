@@ -7,17 +7,23 @@ require "yajl"
 
 module SlideEmUp
   class Presentation
-    Meta    = Struct.new(:title, :dir, :css, :js, :duration)
+    Meta    = Struct.new(:title, :dir, :css, :js, :author, :duration)
     Theme   = Struct.new(:title, :dir, :css, :js)
     Section = Struct.new(:number, :title, :dir, :slides)
-    Slide   = Struct.new(:number, :classes, :markdown, :html)
+    class Slide < Struct.new(:number, :classes, :markdown, :html)
+      def extract_title
+        return @title if @title
+        html.sub!(/<h(\d)>(.*)<\/h\1>/) { @title = $2; "" }
+        @title
+      end
+    end
 
     attr_accessor :meta, :theme, :common, :parts
 
     def initialize(dir)
       infos   = extract_normal_infos(dir) || extract_infos_from_showoff(dir) || {}
       infos   = { "title" => "No title", "theme" => "shower", "duration" => 60 }.merge(infos)
-      @meta   = build_meta(infos["title"], dir, infos["duration"])
+      @meta   = build_meta(infos["title"], dir, infos["author"], infos["duration"])
       @theme  = build_theme(infos["theme"])
       @common = build_theme("common")
       @parts  = infos["sections"] || raise(Exception, "check your presentation.json or showoff.json file")
@@ -52,7 +58,7 @@ module SlideEmUp
       { "title" => infos["name"], "theme" => "showoff", "sections" => sections }
     end
 
-    def build_meta(title, dir, duration)
+    def build_meta(title, dir, author, duration)
       Meta.new.tap do |m|
         m.title = title
         m.dir   = dir
@@ -60,6 +66,7 @@ module SlideEmUp
           m.css = Dir["**/*.css"]
           m.js  = Dir["**/*.js"]
         end
+        m.author = author
         m.duration = duration
       end
     end

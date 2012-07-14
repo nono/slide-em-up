@@ -1,0 +1,73 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= meta.title %></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="css/phone.css">
+  <% meta.css.each do |css| %>
+    <link rel="stylesheet" href="<%= css%>">
+  <% end %>
+  <link rel="stylesheet" href="css/pygments/manni.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h1><%= meta.title %></h1>
+    <p><%= meta.author %></p>
+  </hgroup>
+</slide>
+
+<% sections.each do |section| %>
+  <slide class="segue dark nobackground current">
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2><%= section.title %></h2>
+    </hgroup>
+  </slide>
+  <% section.slides.each do |slide| %>
+    <slide class="<%= slide.classes %>">
+      <hgroup>
+        <h1><%= section.title %></h1>
+        <h2><%= slide.extract_title %></h2>
+      </hgroup>
+      <article>
+        <%= slide.html %>
+      </article>
+    </slide>
+  <% end %>
+<% end %>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<% meta.js.each do |js| %>
+  <script src="<%= js %>"></script>
+<% end %>
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

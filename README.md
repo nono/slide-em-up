@@ -38,6 +38,15 @@ How to do your first presentation with Slide'em up?
 8. Use the arrows keys to navigate between the slides
 
 
+Themes
+------
+
+Several themes are available: `io2012`, `shower`, `3d_slideshow`,
+`html5rocks`, `CSSS` and `memories`. To choose the theme for your
+presentation, edit the `presentation.json` file and change the `"theme"`
+element.
+
+
 Markup for the slides
 ---------------------
 
@@ -82,14 +91,6 @@ like this:
     ```
 
 
-Themes
-------
-
-Several themes are available: shower, 3d_slideshow, html5rocks, CSSS
-and memories. To choose the theme for your presentation, edit the
-`presentation.json` file and change the `"theme"` element.
-
-
 Remote Control
 --------------
 
@@ -111,16 +112,6 @@ setting the `APIKEY` environment variable:
     APIKEY=foobar slide-em-up
 
 
-TODO
-----
-
-* Same command line stuff than showoff
-* Add a showoff theme for compatibility
-* Many more themes and features
-* Favicon
-* Optimize process_code (pygments.rb?)
-
-
 Issues or Suggestions
 ---------------------
 
@@ -129,21 +120,23 @@ Found an issue or have a suggestion? Please report it on
 
 If you wants to make a pull request, please check the specs before:
 
-    ./spec/slide-em-up_spec.rb
+    bundle exec spec/slide-em-up_spec.rb
 
 
 Credits
 -------
 
 Scott Chacon is the guy who made [ShowOff](https://github.com/schacon/showoff).
-Slide'em up is only a copy of ShowOff, where sinatra was replaced by Goliath.
+Slide'em up is only a copy of ShowOff with multiple themes and sinatra
+replaced by Goliath.
 
 Themes were picked from the internet. Thanks to:
 
 - Hakim El Hattab for 3d_slideshow
 - Google for html5rocks
 - Vadim Makeev for shower
-- Lea Verou for CSSS
+- Lea Verou for CSSS (and its modified version, memories)
+- Google for io2012
 
-Copyright (c) 2011 Bruno Michel <bruno.michel@af83.com>
+♡2011 by Bruno Michel. Copying is an act of love. Please copy and share.
 Released under the MIT license
