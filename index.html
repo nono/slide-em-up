@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Slide-em-up by nono</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Slide-em-up</h1>
+        <h2>Write some slides in markdown, choose a style and slide'em up displays them in HTML5.</h2>
+        <a href="https://github.com/nono/slide-em-up" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>Slide'em up</h1>
+
+<p>Slide'em up is a presentation tool. You write some slides in markdown, choose
+a style and it displays it in HTML5. With a browser in full-screen, you can
+make amazing presentations!</p>
+
+<h2>How to do your first presentation with Slide'em up?</h2>
+
+<ol>
+<li>Install slide-em-up: <code>gem install slide-em-up</code>
+</li>
+<li>Create a directory for your presentation: <code>mkdir foobar &amp;&amp; cd foobar</code>
+</li>
+<li>Create a section for your slides: <code>mkdir main</code>
+</li>
+<li>
+<p>Write some slides: <code>vim main/slides.md</code></p>
+
+<p>!SLIDE
+   # My First slide #
+   It's awesome</p>
+
+<p>!SLIDE
+   # My second slide #
+   This rocks too!</p>
+</li>
+<li>
+<p>Write the <code>presentation.json</code> file with the metadata:</p>
+
+<p>{
+     "title": "My first presentation",
+     "theme": "CSSS",
+     "duration": 20,
+     "sections": {
+         "main": "Title of my main section"
+     }
+   }</p>
+</li>
+<li><p>Launch the tool: <code>slide-em-up</code></p></li>
+<li><p>Open your browser on http://localhost:9000/</p></li>
+<li><p>Use the arrows keys to navigate between the slides</p></li>
+</ol><h2>Themes</h2>
+
+<p>Several themes are available: <code>io2012</code>, <code>shower</code>, <code>3d_slideshow</code>, <code>reveal</code>,
+<code>html5rocks</code>, <code>CSSS</code> and <code>memories</code>. To choose the theme for your
+presentation, edit the <code>presentation.json</code> file and change the <code>"theme"</code>
+element.</p>
+
+<h2>Markup for the slides</h2>
+
+<p>This slides are writen in <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>
+and <code>!SLIDE</code> is the indicator for a new slide.</p>
+
+<p>Example:</p>
+
+<pre><code>!SLIDE
+# Title of the first slide #
+## A subtitle ##
+And some text...
+
+!SLIDE
+# Another slide #
+
+* a
+* bullet
+* list
+
+!SLIDE
+# Third slide #
+
+1. **bold**
+2. _italics_
+3. https://github.com/
+</code></pre>
+
+<h2>Syntax Highlighting</h2>
+
+<p>To highlight some code in your slides, you have to install
+<a href="http://pygments.org/">pygments</a>. Then, surround your code with backticks
+like this:</p>
+
+<pre><code>```ruby
+class Foobar
+  def baz
+    puts "Foobar says baz"
+  end
+end
+```
+</code></pre>
+
+<h2>Remote Control</h2>
+
+<p>When your start slide-em-up in console, a message says something like:</p>
+
+<blockquote>
+<p>Your remote key is 652df</p>
+</blockquote>
+
+<p>This remote key can be used to send actions to browsers that display the
+presentation. For example, this command goes to the next line:</p>
+
+<pre><code>curl http://localhost:9000/remote/652df/next
+</code></pre>
+
+<p>The last part of the URL is the action and can be <code>next</code>, <code>prev</code>, <code>up</code> or
+<code>down</code>.</p>
+
+<p>It's also possible to force slide-em-up to use a specific remote key by
+setting the <code>APIKEY</code> environment variable:</p>
+
+<pre><code>APIKEY=foobar slide-em-up
+</code></pre>
+
+<h2>Examples</h2>
+
+<p>I'm using slide-em-up for my own presentations, so you can find some real
+slides powered by slide-em-up on <a href="https://github.com/nono/Presentations">https://github.com/nono/Presentations</a>.</p>
+
+<p>For example, you can try the presentation "Welcome to the nice world of Golang"
+on <a href="http://blog.menfin.info/Presentations/20120709_Golang_introduction/">http://blog.menfin.info/Presentations/20120709_Golang_introduction/</a> and
+see the sources of it on
+<a href="https://github.com/nono/Presentations/tree/master/20120709_Golang_introduction">https://github.com/nono/Presentations/tree/master/20120709_Golang_introduction</a>.</p>
+
+<h2>Issues or Suggestions</h2>
+
+<p>Found an issue or have a suggestion? Please report it on
+<a href="http://github.com/nono/slide-em-up/issues">Github's issue tracker</a>.</p>
+
+<p>If you wants to make a pull request, please check the specs before:</p>
+
+<pre><code>bundle exec spec/slide-em-up_spec.rb
+</code></pre>
+
+<h2>Credits</h2>
+
+<p>Scott Chacon is the guy who made <a href="https://github.com/schacon/showoff">ShowOff</a>.
+Slide'em up is only a copy of ShowOff with multiple themes and sinatra
+replaced by Goliath.</p>
+
+<p>Themes were picked from the internet. Thanks to:</p>
+
+<ul>
+<li>Hakim El Hattab for 3d_slideshow and reveal</li>
+<li>Google for html5rocks</li>
+<li>Vadim Makeev for shower</li>
+<li>Lea Verou for CSSS (and its modified version, memories)</li>
+<li>Google for io2012</li>
+</ul><p>♡2011 by Bruno Michel. Copying is an act of love. Please copy and share.
+Released under the MIT license</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/nono/slide-em-up/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/nono/slide-em-up/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/nono/slide-em-up"></a> is maintained by <a href="https://github.com/nono">nono</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
