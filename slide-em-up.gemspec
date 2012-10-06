@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors          = "Bruno Michel"
   s.email            = "bruno.michel@af83.com"
   s.description      = "Slide'em up is a presentation tool that displays markdown-formatted slides"
-  s.summary          = "Slide'em up is a presentation tool that displays markdown-formatted slides"
+  s.summary          = "Slide'em up is a presentation tool. You write some slides in markdown, choose a style and it displays it in HTML5. With a browser in full-screen, you can make amazing presentations!"
   s.extra_rdoc_files = %w(README.md)
   s.files            = Dir["MIT-LICENSE", "README.md", "Gemfile", "bin/*", "lib/**/*.rb", "themes/**/*"]
   s.executables      = ["slide-em-up"]
