@@ -46,6 +46,14 @@ Several themes are available: `io2012`, `shower`, `3d_slideshow`, `reveal`,
 presentation, edit the `presentation.json` file and change the `"theme"`
 element.
 
+You can also create your own theme, for example, by copying the template:
+
+```sh
+mkdir -p ~/.slide-em-up
+cp -r themes/template ~/.slide-em-up/my-theme
+$EDITOR ~/.slide-em-up/my-theme/README
+```
+
 
 Markup for the slides
 ---------------------

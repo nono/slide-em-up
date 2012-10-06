@@ -1,0 +1,5 @@
+This theme is just a template for creating new ones:
+
+1. Edit the html markup in `index.erb`
+2. Place your stylesheet in the `css` directory
+3. Place your javascript in the `js`  directory

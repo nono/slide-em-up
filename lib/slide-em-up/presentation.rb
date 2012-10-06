@@ -71,8 +71,13 @@ module SlideEmUp
 
     def build_theme(title)
       Theme.new.tap do |t|
+        dir = File.expand_path("~/.slide-em-up/#{title}")
+        if File.exists?(dir)
+          t.dir = dir
+        else
+          t.dir = File.expand_path("../../../themes/#{title}", __FILE__)
+        end
         t.title = title
-        t.dir   = File.expand_path("../../../themes/#{title}", __FILE__)
         Dir.chdir(t.dir) do
           t.css = Dir["**/*.css"]
           t.js  = Dir["**/*.js"]
