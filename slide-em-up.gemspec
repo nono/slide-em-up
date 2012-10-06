@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.executables      = ["slide-em-up"]
   s.require_paths    = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.add_dependency "goliath", "~>1.0.0.beta.1"
+  s.add_dependency "goliath", "~>1.0"
   s.add_dependency "redcarpet", "~>2.1"
   s.add_dependency "erubis", "~>2.7"
   s.add_dependency "yajl-ruby", "~>1.1"
