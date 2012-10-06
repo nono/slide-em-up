@@ -226,3 +226,25 @@ section > header.slide {
 		content:  ' (' attr(href) ')';
 	}
 
+/* Syntax highlighting */
+
+.comment {
+	color: #999;
+}
+
+.string {
+	color: yellow;
+}
+
+.keyword {
+	font-weight: bold;
+	color: deeppink;
+}
+
+.number, .boolean {
+	color: #0cf;
+}
+
+.regex {
+	color: orange;
+}
