@@ -319,5 +319,7 @@
 		}
 	}, false);
 
-  startEventSourceHandler('/remote/sub/events');
+	window.setTimeout(function() {
+		startEventSourceHandler('/remote/sub/events');
+	}, 100);
 }());

@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+require 'tmpdir'
+require "slide-em-up"
+require "goliath/runner"
+
+
+puts "Export to pdf..."
+
+# Config
+output = ARGV.first || "slides.pdf"
+delay = 500
+url = "http://localhost:9000/"
+viewport = { width: 1024, height: 768 }
+presentation = SlideEmUp::Presentation.new(Dir.pwd)
+
+# Run a slide-em-up instance in background
+pid = Process.fork do
+  runner = Goliath::Runner.new([], nil)
+  runner.app = SlideEmUp::Routes.run(presentation)
+  runner.run
+end
+
+# Count the number of slides
+nb_slides = presentation.nb_slides
+
+# The phantomjs script
+js = <<-EOS
+var dir = phantom.args[0];
+var page = require('webpage').create();
+page.viewportSize = { width: #{viewport[:width]}, height: #{viewport[:height]} };
+page.paperSize = { format: 'A4', orientation: 'landscape' };
+
+function exportSlides() {
+  var i = 0;
+  setInterval(function() {
+    console.log('Render slide ' + i);
+    page.render(dir + '/slide' + i + '.pdf');
+    page.sendEvent('keypress', ' ');
+    if (++i == #{nb_slides}) { phantom.exit(); }
+  }, #{delay});
+}
+
+console.log('Load #{url}');
+page.open("#{url}", function (status) {
+  if (status !== 'success') {
+    console.log('Unable to load the given URL');
+    phantom.exit(-1);
+  } else {
+    // wait to be sure the page is loaded correctly
+    setTimeout(exportSlides, #{delay} * 5);
+  }
+});
+EOS
+
+Dir.mktmpdir do |dir|
+  sleep 2
+  script = "#{dir}/script.js"
+  File.write script, js
+  system "phantomjs #{script} #{dir}"
+  files = (0...nb_slides).map {|i| "#{dir}/slide#{i}.pdf" }.join ' '
+  system "pdftk #{files} cat output #{output}"
+  File.delete script
+end
+
+Process.kill "QUIT", pid
+Process.wait pid

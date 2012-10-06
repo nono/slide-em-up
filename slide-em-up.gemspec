@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary          = "Slide'em up is a presentation tool. You write some slides in markdown, choose a style and it displays it in HTML5. With a browser in full-screen, you can make amazing presentations!"
   s.extra_rdoc_files = %w(README.md)
   s.files            = Dir["MIT-LICENSE", "README.md", "Gemfile", "bin/*", "lib/**/*.rb", "themes/**/*"]
-  s.executables      = ["slide-em-up"]
+  s.executables      = ["slide-em-up", "slide-em-up2pdf"]
   s.require_paths    = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.add_dependency "goliath", "~>1.0"

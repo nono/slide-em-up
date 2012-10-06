@@ -157,7 +157,9 @@ var self = window.SlideShow = function(slide) {
 	document.addEventListener('touchend', this, false);
 	document.addEventListener('touchcancel', this, false);
 
-  this.startEventSourceHandler('/remote/sub/events');
+	window.setTimeout(function() {
+		this.startEventSourceHandler('/remote/sub/events');
+	}, 100);
 
 	// Process iframe slides
 	$$('.slide[data-src]:empty').forEach(function(slide) {

@@ -43,7 +43,9 @@ var Slideshow = (function(){
 		document.addEventListener('touchstart', onDocumentTouchStart, false);
 		window.addEventListener('hashchange', onWindowHashChange, false);
 
-		startEventSourceHandler('/remote/sub/events');
+		window.setTimeout(function() {
+			startEventSourceHandler('/remote/sub/events');
+		}, 100);
 		
 		// Read the initial state of the URL (hash)
 		readURL();

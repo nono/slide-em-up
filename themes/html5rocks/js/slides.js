@@ -304,7 +304,9 @@
 	      function(e) { if (e.state) { _t.go(e.state); } }, false);
 	  query('#left-init-key').addEventListener('click',
 	      function() { _t.next(); }, false);
-    this._startEventSource('/remote/sub/events');
+    window.setTimeout(function() {
+      this._startEventSource('/remote/sub/events');
+    }, 100);
 	  this._update();
 	};
 

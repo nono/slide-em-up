@@ -120,6 +120,13 @@ setting the `APIKEY` environment variable:
     APIKEY=foobar slide-em-up
 
 
+Export to PDF
+-------------
+
+You can export your presentation to PDF by installing
+[phantomjs](http://phantomjs.org/) and then run `slide-em-up2pdf`.
+
+
 Examples
 --------
 

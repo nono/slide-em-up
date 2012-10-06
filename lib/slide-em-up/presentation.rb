@@ -40,6 +40,13 @@ module SlideEmUp
         Dir["#{meta.dir}/**#{asset}"].first
     end
 
+    def nb_slides
+      @parts.inject(0) do |nb,(dir,title)|
+        raw = Dir["#{meta.dir}/#{dir}/**/*.md"].map { |f| File.read(f) }.join("\n\n")
+        nb += raw.split(/!SLIDE */).length
+      end
+    end
+
   protected
 
     def extract_normal_infos(dir)

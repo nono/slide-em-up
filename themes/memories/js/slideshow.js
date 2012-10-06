@@ -119,7 +119,9 @@ var self = window.SlideShow = function(slide) {
 	document.addEventListener('keyup', this, false);
 	document.addEventListener('keydown', this, false);
 	
-  this.startEventSourceHandler('/remote/sub/events');
+	window.setTimeout(function() {
+		this.startEventSourceHandler('/remote/sub/events');
+	}, 100);
 
 	// Process iframe slides
 	$$('.slide[data-src]:empty').forEach(function(slide) {
