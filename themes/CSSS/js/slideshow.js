@@ -291,11 +291,11 @@ self.prototype = {
 				break;
 			case 'touchstart':
 				evt.preventDefault();  // prevent image drag
-				data = event.touches ? event.touches[0] : event;
+				data = evt.touches ? evt.touches[0] : evt;
 				startTouch = { X: data.pageX, Y: data.pageY };
 				break;
 			case 'touchmove':
-				data = event.touches ? event.touches[0] : event;
+				data = evt.touches ? evt.touches[0] : evt;
 				stopTouch = { X: data.pageX, Y: data.pageY };
 				break;
 			case 'touchend':
