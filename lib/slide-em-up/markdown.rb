@@ -1,5 +1,5 @@
 # Encoding: utf-8
-require "albino"
+require "pygments"
 require "redcarpet"
 
 
@@ -21,7 +21,7 @@ module SlideEmUp
     end
 
     def block_code(code, lang)
-      colorized = Albino.new(code, lang || "text").colorize(:P => "nowrap")
+      colorized = Pygments.highlight(code, :lexer => lang || "text", :options => {:nowrap => true})
       "<pre><code class=\"#{lang}\">#{colorized}</code></pre>"
     end
 

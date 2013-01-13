@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency "redcarpet", "~>2.1"
   s.add_dependency "erubis", "~>2.7"
   s.add_dependency "yajl-ruby", "~>1.1"
-  s.add_dependency "albino", "~>1.3"
+  s.add_dependency "pygments.rb", "~>0.3"
   s.add_development_dependency "minitest", "~>2.3"
 end
